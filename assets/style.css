@@ -51,3 +51,42 @@ ul,ol{padding-left:22px}
 @media (max-width:480px){
   .container{width:92%}.logo{font-size:14px}.hero h1{font-size:39px}.lead{font-size:17px}.buttons{display:grid;grid-template-columns:1fr}.btn{text-align:center;width:100%}.contact{display:grid;grid-template-columns:1fr}.contact a{width:100%;text-align:center}.pagehero h1{font-size:36px}.section{padding:44px 0}.stats{margin-top:24px}.stat{padding:14px}.workflow{padding:16px}.workflow .node{width:100%}pre{padding:15px;font-size:12px}.footer{padding:30px 0}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.workflow .node{animation:none}.btn:hover{transform:none}}
+
+/* V4 recruiter-friendly additions */
+.hero-photo-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hero-avatar{display:block}
+.photo-caption{margin-top:10px;color:var(--muted);font-size:13px;font-weight:700}
+.hero-contact{margin-top:25px}
+.footer-grid{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.footer-contact{display:flex;gap:12px;flex-wrap:wrap}
+.footer-contact a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.footer-contact a:hover{color:var(--primary)}
+.project-title{font-size:25px;line-height:1.2}
+.more-badge{display:inline-block;margin-top:17px;padding:8px 12px;border-radius:999px;background:#eaf1ff;color:var(--primary);font-weight:850;font-size:12px;letter-spacing:.7px;animation:attentionPulse 2s ease-in-out infinite}
+.project-card:hover .more-badge{background:var(--primary);color:#fff}
+.attention-strip,.attention-note{margin-top:22px;padding:15px 18px;background:#eef4ff;border:1px solid #c8d8f6;border-radius:12px;color:#31538e}
+.attention-strip{display:inline-block}
+.info-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.info-table th,.info-table td{padding:15px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.info-table th{font-size:13px;color:#31538e;background:#f5f8fd;font-weight:850}
+.info-table tr:last-child th,.info-table tr:last-child td{border-bottom:0}
+.info-table tbody tr:hover{background:#fbfcff}
+.table-wrap{width:100%;overflow-x:auto;border-radius:14px}
+.step-card{position:relative}
+.step-number{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#eaf1ff;color:var(--primary);font-weight:900;font-size:12px;margin-bottom:10px}
+.resume-profile{text-align:center}
+.resume-photo{width:130px;height:130px;border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:var(--shadow);margin:0 auto 12px;display:block}
+@keyframes attentionPulse{0%,100%{transform:translateY(0);box-shadow:0 0 0 0 rgba(37,99,235,0)}50%{transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,99,235,.12)}}
+@media (max-width:850px){
+ .footer-grid{align-items:flex-start;flex-direction:column}
+ .info-table{min-width:650px}
+ .table-wrap{border:1px solid var(--line)}
+ .attention-strip{display:block}
+}
+@media (max-width:480px){
+ .hero-avatar{width:170px;height:170px}
+ .info-table{min-width:600px}
+ .footer-contact{display:grid;grid-template-columns:1fr}
+ .footer-contact a{overflow-wrap:anywhere}
+}
+@media (prefers-reduced-motion:reduce){.more-badge,.attention-strip{animation:none}}

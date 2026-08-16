@@ -1,23 +1,81 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cellma Patient Portal | Sahil Kutte</title><link rel="stylesheet" href="../assets/style.css"></head><body><header class="nav"><div class="container navin"><a class="logo" href="../index.html">SAHIL<span>.</span>KUTTE</a><button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button><nav class="links" id="site-menu"><a class="" href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a class="" href="../architecture.html">Architecture</a><a class="" href="../skills.html">Skills</a><a class="" href="../resume.html">Resume</a></nav></div></header><main><section class="pagehero"><div class="container"><div class="breadcrumb"><a href="../projects.html">Projects</a> / Cellma Patient Portal</div><div class="eyebrow">Healthcare · Production system</div><h1>Cellma Patient Portal</h1><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">REST</span><span class="tag">Microservices / SOA</span><span class="tag">JPA / Hibernate</span><span class="tag">MySQL</span><span class="tag">Messaging</span></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Project overview</h2><div class="two-col"><div><p class="muted">Cellma Patient Portal is part of the healthcare domain work represented in this portfolio. The backend work includes production REST APIs, business logic, relational persistence and service-oriented architecture.</p><p class="muted">The goal of this page is to let a reviewer understand not only what technologies were used, but how the backend is structured and where engineering decisions matter.</p></div><div class="card"><h3>My role</h3><p class="muted">Backend development, API implementation, business logic, persistence, integrations and production issue resolution.</p></div></div></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Architecture</h2><div class="workflow"><span class="node">Client</span><b class="arrow">→</b><span class="node">API</span><b class="arrow">→</b><span class="node">Service</span><b class="arrow">→</b><span class="node">Data Access</span><b class="arrow">→</b><span class="node">MySQL</span></div><div class="grid grid3"><div class="card"><h3>API layer</h3><p class="muted">REST endpoints, DTOs, request validation and exception handling.</p></div><div class="card"><h3>Business layer</h3><p class="muted">Business rules, transactions and orchestration.</p></div><div class="card"><h3>Persistence layer</h3><p class="muted">Spring Data JPA, Hibernate mappings, repositories and MySQL.</p></div></div></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>How a request works</h2><pre>HTTP Request
-    ↓
-Spring MVC
-    ↓
-Controller
-    ↓
-Request DTO / Validation
-    ↓
-Service
-    ↓
-Business Rules
-    ↓
-Repository
-    ↓
-JPA / Hibernate
-    ↓
-MySQL
-    ↓
-Response DTO
-    ↓
-HTTP Response</pre></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Database & performance</h2><p class="muted">The backend uses relational data and JPA/Hibernate. Areas covered in the engineering work include indexes, repository query design, connection pooling, pagination and avoiding unnecessary database access.</p><div class="grid grid3"><div class="card"><h3>Indexes</h3><p class="muted">Indexes support frequently filtered, joined or sorted data.</p></div><div class="card"><h3>HikariCP</h3><p class="muted">Connection pooling controls how application threads reuse database connections.</p></div><div class="card"><h3>Queries</h3><p class="muted">Repository design and query analysis help reduce unnecessary database work.</p></div></div></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Large file workflow</h2><div class="workflow"><span class="node">Large File</span><b class="arrow">→</b><span class="node">Chunk 1..N</span><b class="arrow">→</b><span class="node">Backend</span><b class="arrow">→</b><span class="node">Temporary Storage</span><b class="arrow">→</b><span class="node">Merge</span><b class="arrow">→</b><span class="node">Final File</span></div><p class="muted">The upload work includes chunk handling, merging and cleanup of temporary data. This is a strong example of solving practical large-file and network constraints instead of relying only on a single multipart request.</p></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Concurrent appointment booking</h2><p class="muted">A key consistency problem in booking systems is two users attempting to claim the same slot at nearly the same time. Transactional/concurrency controls are used so the database remains the source of truth and the business invariant is protected.</p><pre>User A ──→ Booking Request ──┐
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cellma Patient Portal | Sahil Kutte</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head><body><header class="nav"><div class="container navin">
+<a class="logo" href="../index.html">SAHIL<span>.</span>KUTTE</a>
+<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button>
+<nav class="links" id="site-menu">
+<a class="" href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a class="" href="../architecture.html">Architecture</a><a class="" href="../skills.html">Skills</a><a class="" href="../resume.html">Resume</a>
+</nav></div></header><main>
+<section class="pagehero"><div class="container"><div class="breadcrumb"><a href="../projects.html">Projects</a> / Cellma Patient Portal</div>
+<div class="eyebrow">Healthcare · Production system</div><h1>Cellma Patient Portal</h1>
+<span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">REST</span><span class="tag">JPA / Hibernate</span><span class="tag">MySQL</span>
+<div class="attention-strip">🔎 <strong>More detail below:</strong> the sections are visible directly — no hidden interview-question panels.</div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">At a glance</div><h2>Project snapshot</h2>
+<div class="table-wrap"><table class="info-table"><tbody>
+<tr><th>Domain</th><td>Healthcare / Patient Portal</td></tr>
+<tr><th>Role</th><td>Backend Software Engineer</td></tr>
+<tr><th>Core stack</th><td>Java · Spring Boot · REST · JPA/Hibernate · MySQL</td></tr>
+<tr><th>Engineering areas</th><td>APIs · business logic · persistence · file handling · concurrency · production support</td></tr>
+<tr><th>Architecture</th><td>Service-oriented / layered backend architecture</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Architecture</div><h2>Backend layers</h2>
+<div class="grid grid3"><div class="card"><span class="step-number">01</span><h3>API layer</h3><p class="muted">REST controllers expose stable HTTP contracts and map requests into application models.</p></div>
+<div class="card"><span class="step-number">02</span><h3>Business layer</h3><p class="muted">Services contain business rules, transactions and orchestration.</p></div>
+<div class="card"><span class="step-number">03</span><h3>Persistence layer</h3><p class="muted">Spring Data JPA, Hibernate mappings, repositories and MySQL handle persistence.</p></div></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Workflow</div><h2>How a request works</h2>
+<div class="workflow"><span class="node">HTTP Request</span><b class="arrow">→</b><span class="node">Spring MVC</span><b class="arrow">→</b><span class="node">Controller</span><b class="arrow">→</b><span class="node">DTO / Validation</span><b class="arrow">→</b><span class="node">Service</span><b class="arrow">→</b><span class="node">Repository</span><b class="arrow">→</b><span class="node">JPA / Hibernate</span><b class="arrow">→</b><span class="node">MySQL</span></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Database & performance</div><h2>Data engineering</h2>
+<div class="table-wrap"><table class="info-table"><thead><tr><th>Area</th><th>What it solves</th><th>Engineering focus</th></tr></thead><tbody>
+<tr><td>Indexes</td><td>Faster filtering, joining and sorting</td><td>Choose indexes around real access patterns</td></tr>
+<tr><td>HikariCP</td><td>Connection reuse</td><td>Pool sizing and safe database concurrency</td></tr>
+<tr><td>Repository design</td><td>Reduce unnecessary DB work</td><td>Use appropriate Spring Data methods and query patterns</td></tr>
+<tr><td>Pagination</td><td>Control large result sets</td><td>Avoid loading unnecessary records into memory</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Large file workflow</div><h2>Chunk upload → merge → final file</h2>
+<div class="workflow"><span class="node">Large File</span><b class="arrow">→</b><span class="node">Chunk 1..N</span><b class="arrow">→</b><span class="node">Backend</span><b class="arrow">→</b><span class="node">Temporary Storage</span><b class="arrow">→</b><span class="node">Merge</span><b class="arrow">→</b><span class="node">Final File</span></div>
+<p class="muted">The upload work includes chunk handling, merging and cleanup of temporary data. This addresses practical large-file and network constraints rather than depending only on one very large multipart request.</p></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Concurrency</div><h2>Appointment booking consistency</h2>
+<p class="muted">A key consistency problem in booking systems is two users attempting to claim the same slot at nearly the same time. Transactional/concurrency controls protect the business invariant and keep the database as the source of truth.</p>
+<pre>User A ──→ Booking Request ──┐
                              ├──→ Transaction / DB consistency
-User B ──→ Booking Request ──┘</pre></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Messaging & distributed communication</h2><p class="muted">Kafka and RabbitMQ are part of the broader engineering toolkit used across the work. Messaging is useful when work can be decoupled from the initiating HTTP request, allowing consumers to process events asynchronously.</p></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Observability & production support</h2><div class="grid grid3"><div class="card"><h3>Logs</h3><p class="muted">Understand what happened inside a service.</p></div><div class="card"><h3>Metrics</h3><p class="muted">Measure application and infrastructure behavior.</p></div><div class="card"><h3>Traces</h3><p class="muted">Follow a request across components.</p></div></div></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Engineering contribution</h2><ul class="muted"><li>Production REST API development.</li><li>Backend business logic and service-layer implementation.</li><li>JPA/Hibernate persistence and database interaction.</li><li>Large-file upload/chunk handling work.</li><li>Production debugging and reliability improvements.</li><li>Working with service-oriented architecture and asynchronous communication concepts.</li></ul></div></section><footer class="footer"><div class="container">© 2026 Sahil Kutte · Backend Software Engineer</div></footer><script>(function(){const b=document.querySelector('.menu-toggle'),m=document.getElementById('site-menu');if(!b||!m)return;b.addEventListener('click',function(){const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'✕':'☰'});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='☰'})});})();</script></body></html>
+User B ──→ Booking Request ──┘</pre></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Communication</div><h2>Messaging & distributed communication</h2>
+<p class="muted">Kafka and RabbitMQ are part of the broader engineering toolkit used across the work. Messaging is useful when work can be decoupled from the initiating HTTP request, allowing consumers to process events asynchronously.</p></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Contribution</div><h2>My engineering contribution</h2>
+<ul class="muted"><li>Production REST API development.</li><li>Backend business logic and service-layer implementation.</li><li>JPA/Hibernate persistence and database interaction.</li><li>Large-file upload/chunk handling work.</li><li>Production debugging and reliability improvements.</li><li>Working with service-oriented architecture and asynchronous communication concepts.</li></ul></div></section>
+</main><footer class="footer"><div class="container footer-grid">
+<div>© 2026 Sahil Kutte · Backend Software Engineer</div>
+<div class="footer-contact">
+<a href="mailto:kuttesahil@gmail.com">kuttesahil@gmail.com</a>
+<a href="tel:+919545538873">+91 95455 38873</a>
+<a href="https://www.linkedin.com/in/sahil-kutte-42a18642a/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://github.com/sahilkutte" target="_blank" rel="noopener">GitHub</a>
+</div></div></footer><script>
+(function(){
+ const b=document.querySelector('.menu-toggle'),m=document.getElementById('site-menu');
+ if(!b||!m)return;
+ b.addEventListener('click',function(){
+   const o=m.classList.toggle('open');
+   b.setAttribute('aria-expanded',o);
+   b.textContent=o?'✕':'☰';
+ });
+ m.querySelectorAll('a').forEach(function(a){
+   a.addEventListener('click',function(){
+     m.classList.remove('open');
+     b.setAttribute('aria-expanded','false');
+     b.textContent='☰';
+   });
+ });
+})();
+</script></body></html>

@@ -1,1 +1,68 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cellma Referral Portal | Sahil Kutte</title><link rel="stylesheet" href="../assets/style.css"></head><body><header class="nav"><div class="container navin"><a class="logo" href="../index.html">SAHIL<span>.</span>KUTTE</a><button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button><nav class="links" id="site-menu"><a class="" href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a class="" href="../architecture.html">Architecture</a><a class="" href="../skills.html">Skills</a><a class="" href="../resume.html">Resume</a></nav></div></header><main><section class="pagehero"><div class="container"><div class="breadcrumb"><a href="../projects.html">Projects</a> / Cellma Referral Portal</div><div class="eyebrow">Healthcare · Production system</div><h1>Cellma Referral Portal</h1><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">REST</span><span class="tag">JPA / Hibernate</span><span class="tag">MySQL</span></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Project overview</h2><p class="muted">Cellma Referral Portal is represented as a healthcare referral-focused backend application. The site documents the backend engineering approach while keeping internal business information confidential.</p></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Workflow</h2><div class="workflow"><span class="node">User</span><b class="arrow">→</b><span class="node">Referral API</span><b class="arrow">→</b><span class="node">Validation</span><b class="arrow">→</b><span class="node">Business Service</span><b class="arrow">→</b><span class="node">Persistence</span></div></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Backend layers</h2><div class="grid grid3"><div class="card"><h3>Controller</h3><p class="muted">Maps HTTP requests and responses.</p></div><div class="card"><h3>Service</h3><p class="muted">Contains referral business rules and orchestration.</p></div><div class="card"><h3>Repository</h3><p class="muted">Provides data access through Spring Data JPA/Hibernate.</p></div></div></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>API & data engineering</h2><p class="muted">The implementation approach includes DTO-based API contracts, request validation, repository methods, relational mappings and transaction boundaries. Detailed endpoint examples can be added once the exact production endpoints are confirmed.</p></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>My contribution</h2><ul class="muted"><li>Backend API development using Java and Spring Boot.</li><li>Business logic implementation.</li><li>Database access using JPA/Hibernate.</li><li>Production debugging and maintenance.</li></ul></div></section><footer class="footer"><div class="container">© 2026 Sahil Kutte · Backend Software Engineer</div></footer><script>(function(){const b=document.querySelector('.menu-toggle'),m=document.getElementById('site-menu');if(!b||!m)return;b.addEventListener('click',function(){const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'✕':'☰'});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='☰'})});})();</script></body></html>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cellma Referral Portal | Sahil Kutte</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head><body><header class="nav"><div class="container navin">
+<a class="logo" href="../index.html">SAHIL<span>.</span>KUTTE</a>
+<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button>
+<nav class="links" id="site-menu">
+<a class="" href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a class="" href="../architecture.html">Architecture</a><a class="" href="../skills.html">Skills</a><a class="" href="../resume.html">Resume</a>
+</nav></div></header><main>
+<section class="pagehero"><div class="container"><div class="breadcrumb"><a href="../projects.html">Projects</a> / Cellma Referral Portal</div>
+<div class="eyebrow">Healthcare · Production system</div><h1>Cellma Referral Portal</h1>
+<span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">REST</span><span class="tag">JPA / Hibernate</span><span class="tag">MySQL</span>
+<div class="attention-strip">🔎 <strong>More detail below:</strong> follow the visible workflow and technical tables.</div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">At a glance</div><h2>Project snapshot</h2>
+<div class="table-wrap"><table class="info-table"><tbody>
+<tr><th>Domain</th><td>Healthcare / Referral workflows</td></tr>
+<tr><th>Role</th><td>Backend Software Engineer</td></tr>
+<tr><th>Core stack</th><td>Java · Spring Boot · REST · JPA/Hibernate · MySQL</td></tr>
+<tr><th>Engineering areas</th><td>APIs · validation · business logic · persistence · production support</td></tr>
+<tr><th>Architecture</th><td>Layered / service-oriented backend architecture</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Workflow</div><h2>Referral request lifecycle</h2>
+<div class="workflow"><span class="node">User</span><b class="arrow">→</b><span class="node">Referral API</span><b class="arrow">→</b><span class="node">Validation</span><b class="arrow">→</b><span class="node">Business Service</span><b class="arrow">→</b><span class="node">Persistence</span><b class="arrow">→</b><span class="node">Database</span></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Backend layers</div><h2>Separation of responsibility</h2>
+<div class="table-wrap"><table class="info-table"><thead><tr><th>Layer</th><th>Responsibility</th><th>Typical technology</th></tr></thead><tbody>
+<tr><td>Controller</td><td>HTTP request/response mapping</td><td>Spring MVC / REST</td></tr>
+<tr><td>DTO + validation</td><td>API contract and input validation</td><td>Java DTOs + Bean Validation</td></tr>
+<tr><td>Service</td><td>Referral business rules and orchestration</td><td>Spring service layer</td></tr>
+<tr><td>Repository</td><td>Data access and persistence</td><td>Spring Data JPA</td></tr>
+<tr><td>Database</td><td>Durable relational data</td><td>MySQL</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">API & data engineering</div><h2>Implementation approach</h2>
+<p class="muted">The implementation approach includes DTO-based API contracts, request validation, repository methods, relational mappings and transaction boundaries. Detailed endpoint examples can be added once the exact production endpoints are confirmed.</p>
+<div class="attention-note">🔐 Internal production data and confidential endpoint details are intentionally not exposed on this public portfolio.</div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Contribution</div><h2>My contribution</h2>
+<ul class="muted"><li>Backend API development using Java and Spring Boot.</li><li>Business logic implementation.</li><li>Database access using JPA/Hibernate.</li><li>Production debugging and maintenance.</li></ul></div></section>
+</main><footer class="footer"><div class="container footer-grid">
+<div>© 2026 Sahil Kutte · Backend Software Engineer</div>
+<div class="footer-contact">
+<a href="mailto:kuttesahil@gmail.com">kuttesahil@gmail.com</a>
+<a href="tel:+919545538873">+91 95455 38873</a>
+<a href="https://www.linkedin.com/in/sahil-kutte-42a18642a/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://github.com/sahilkutte" target="_blank" rel="noopener">GitHub</a>
+</div></div></footer><script>
+(function(){
+ const b=document.querySelector('.menu-toggle'),m=document.getElementById('site-menu');
+ if(!b||!m)return;
+ b.addEventListener('click',function(){
+   const o=m.classList.toggle('open');
+   b.setAttribute('aria-expanded',o);
+   b.textContent=o?'✕':'☰';
+ });
+ m.querySelectorAll('a').forEach(function(a){
+   a.addEventListener('click',function(){
+     m.classList.remove('open');
+     b.setAttribute('aria-expanded','false');
+     b.textContent='☰';
+   });
+ });
+})();
+</script></body></html>

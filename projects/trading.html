@@ -1,4 +1,33 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Algorithmic Trading Platform | Sahil Kutte</title><link rel="stylesheet" href="../assets/style.css"></head><body><header class="nav"><div class="container navin"><a class="logo" href="../index.html">SAHIL<span>.</span>KUTTE</a><button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button><nav class="links" id="site-menu"><a class="" href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a class="" href="../architecture.html">Architecture</a><a class="" href="../skills.html">Skills</a><a class="" href="../resume.html">Resume</a></nav></div></header><main><section class="pagehero"><div class="container"><div class="breadcrumb"><a href="../projects.html">Projects</a> / Algorithmic Trading Platform</div><div class="eyebrow">Real-time systems · Engineering project</div><h1>Algorithmic Trading Platform</h1><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">WebSocket</span><span class="tag">Protobuf</span><span class="tag">REST</span><span class="tag">Strategy</span><span class="tag">Risk Management</span></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>System overview</h2><p class="muted">An algorithmic trading platform designed around real-time market data, strategy execution, risk management, position management, trade logging and broker order execution.</p><div class="workflow"><span class="node">Broker</span><b class="arrow">→</b><span class="node">WebSocket</span><b class="arrow">→</b><span class="node">Market Data</span><b class="arrow">→</b><span class="node">Strategy</span><b class="arrow">→</b><span class="node">Risk</span><b class="arrow">→</b><span class="node">Order Engine</span></div></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Market-data workflow</h2><pre>Broker
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Algorithmic Trading Platform | Sahil Kutte</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head><body><header class="nav"><div class="container navin">
+<a class="logo" href="../index.html">SAHIL<span>.</span>KUTTE</a>
+<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button>
+<nav class="links" id="site-menu">
+<a class="" href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a class="" href="../architecture.html">Architecture</a><a class="" href="../skills.html">Skills</a><a class="" href="../resume.html">Resume</a>
+</nav></div></header><main>
+<section class="pagehero"><div class="container"><div class="breadcrumb"><a href="../projects.html">Projects</a> / Algorithmic Trading Platform</div>
+<div class="eyebrow">Real-time systems · Engineering project</div><h1>Algorithmic Trading Platform</h1>
+<span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">WebSocket</span><span class="tag">Protobuf</span><span class="tag">REST</span><span class="tag">Strategy</span><span class="tag">Risk Management</span>
+<div class="attention-strip">⚡ <strong>Follow the live-data path:</strong> Broker → WebSocket → Protobuf → Strategy → Risk → Order Engine.</div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">At a glance</div><h2>System snapshot</h2>
+<div class="table-wrap"><table class="info-table"><tbody>
+<tr><th>System type</th><td>Real-time algorithmic trading platform</td></tr>
+<tr><th>Input</th><td>Broker market data over WebSocket</td></tr>
+<tr><th>Serialization</th><td>Protobuf binary messages → generated Java objects</td></tr>
+<tr><th>Decision flow</th><td>Strategy → Risk Management → Position / Exposure → Order Engine</td></tr>
+<tr><th>Execution</th><td>Broker REST API for order operations</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">System overview</div><h2>Market data → strategy → risk → order</h2>
+<div class="workflow"><span class="node">Broker</span><b class="arrow">→</b><span class="node">WebSocket</span><b class="arrow">→</b><span class="node">Market Data</span><b class="arrow">→</b><span class="node">Strategy</span><b class="arrow">→</b><span class="node">Risk</span><b class="arrow">→</b><span class="node">Order Engine</span><b class="arrow">→</b><span class="node">Broker REST</span></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Market-data workflow</div><h2>What happens to a WebSocket message?</h2>
+<pre>Broker
   ↓
 Authorized WebSocket URL
   ↓
@@ -10,7 +39,23 @@ Generated Protobuf Java Object
   ↓
 Market Data Model
   ↓
-Strategy Engine</pre><p class="muted">The WebSocket keeps the market-data channel open so price updates can arrive continuously. Protobuf is used as the message serialization format.</p></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Authentication flow</h2><div class="workflow"><span class="node">User</span><b class="arrow">→</b><span class="node">Broker OAuth</span><b class="arrow">→</b><span class="node">Authorization Code</span><b class="arrow">→</b><span class="node">Backend Callback</span><b class="arrow">→</b><span class="node">Access Token</span></div><p class="muted">The authorization code is exchanged for credentials/tokens used by the application to interact with broker APIs. Sensitive values are never displayed in this portfolio.</p></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Strategy workflow</h2><pre>Live Market Data
+Strategy Engine</pre>
+<p class="muted">The WebSocket keeps the market-data channel open so price updates can arrive continuously. Protobuf is the message serialization format; it does not mean gRPC is being used.</p></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Communication choices</div><h2>WebSocket, REST, Protobuf and gRPC — clearly separated</h2>
+<div class="table-wrap"><table class="info-table"><thead><tr><th>Technology</th><th>What it is</th><th>Why it is used here</th></tr></thead><tbody>
+<tr><td>WebSocket</td><td>Persistent communication channel</td><td>Continuous inbound market-data updates</td></tr>
+<tr><td>REST</td><td>HTTP request/response API style</td><td>Explicit broker operations such as order requests</td></tr>
+<tr><td>Protobuf</td><td>Serialization + message schema</td><td>Compact structured binary market-data messages</td></tr>
+<tr><td>gRPC</td><td>RPC framework, commonly using Protobuf</td><td>Not required for the broker WebSocket data path</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Authentication flow</div><h2>Broker OAuth</h2>
+<div class="workflow"><span class="node">User</span><b class="arrow">→</b><span class="node">Broker OAuth</span><b class="arrow">→</b><span class="node">Authorization Code</span><b class="arrow">→</b><span class="node">Backend Callback</span><b class="arrow">→</b><span class="node">Access Token</span></div>
+<p class="muted">The authorization code is exchanged for credentials/tokens used by the application to interact with broker APIs. Sensitive values are never displayed in this portfolio.</p></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Strategy</div><h2>From market tick to order decision</h2>
+<pre>Live Market Data
       ↓
 Strategy Conditions
       ↓
@@ -24,4 +69,43 @@ Order Decision
       ↓
 Order Engine
       ↓
-Broker REST API</pre></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Why WebSocket vs REST</h2><div class="grid grid2"><div class="card"><h3>WebSocket</h3><p class="muted">Best suited here for continuous inbound market updates where polling would be inefficient.</p></div><div class="card"><h3>REST</h3><p class="muted">Best suited for explicit request/response operations such as order actions and broker API calls.</p></div></div></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Protobuf vs gRPC</h2><p class="muted"><strong>Protobuf</strong> is a serialization/IDL technology. <strong>gRPC</strong> is an RPC framework that commonly uses Protobuf. In this architecture, Protobuf messages can be consumed over the broker's WebSocket channel without implying that gRPC is being used.</p></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Risk & order management</h2><div class="grid grid3"><div class="card"><h3>Risk</h3><p class="muted">Checks whether a strategy-generated action is allowed within defined limits.</p></div><div class="card"><h3>Position Manager</h3><p class="muted">Tracks current exposure and position state.</p></div><div class="card"><h3>Order Engine</h3><p class="muted">Translates approved trading decisions into broker order requests.</p></div></div></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Failure handling</h2><div class="grid grid3"><div class="card"><h3>WebSocket disconnect</h3><p class="muted">Detect connection state and recover the market-data channel safely.</p></div><div class="card"><h3>Order rejection</h3><p class="muted">Separate transport failure from broker-side rejection and update state accordingly.</p></div><div class="card"><h3>Duplicate execution</h3><p class="muted">Use identifiers and state checks to prevent accidental repeated actions.</p></div></div></div></section><section class="section"><div class="container"><div class="kicker">Project detail</div><h2>Current engineering focus</h2><p class="muted">This project is also being used to deepen understanding of networking, Java concurrency, WebSocket lifecycle, market-data processing, strategy design, risk management and distributed-system architecture.</p></div></section><footer class="footer"><div class="container">© 2026 Sahil Kutte · Backend Software Engineer</div></footer><script>(function(){const b=document.querySelector('.menu-toggle'),m=document.getElementById('site-menu');if(!b||!m)return;b.addEventListener('click',function(){const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'✕':'☰'});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='☰'})});})();</script></body></html>
+Broker REST API</pre></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Risk & order management</div><h2>Responsibilities</h2>
+<div class="table-wrap"><table class="info-table"><thead><tr><th>Component</th><th>Responsibility</th><th>Key concern</th></tr></thead><tbody>
+<tr><td>Strategy Engine</td><td>Turns market conditions into signals</td><td>Correct strategy conditions</td></tr>
+<tr><td>Risk Management</td><td>Checks whether an action is allowed</td><td>Limits and exposure</td></tr>
+<tr><td>Position Manager</td><td>Tracks current position state</td><td>Accurate exposure</td></tr>
+<tr><td>Order Engine</td><td>Creates broker order requests</td><td>Correct execution state</td></tr>
+<tr><td>Trade Logger</td><td>Persists trading events/results</td><td>Traceability</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Failure handling</div><h2>Important real-time failure cases</h2>
+<div class="grid grid3"><div class="card"><h3>WebSocket disconnect</h3><p class="muted">Detect connection state and recover the market-data channel safely.</p></div>
+<div class="card"><h3>Order rejection</h3><p class="muted">Separate transport failure from broker-side rejection and update state accordingly.</p></div>
+<div class="card"><h3>Duplicate execution</h3><p class="muted">Use identifiers and state checks to prevent accidental repeated actions.</p></div></div></div></section>
+</main><footer class="footer"><div class="container footer-grid">
+<div>© 2026 Sahil Kutte · Backend Software Engineer</div>
+<div class="footer-contact">
+<a href="mailto:kuttesahil@gmail.com">kuttesahil@gmail.com</a>
+<a href="tel:+919545538873">+91 95455 38873</a>
+<a href="https://www.linkedin.com/in/sahil-kutte-42a18642a/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://github.com/sahilkutte" target="_blank" rel="noopener">GitHub</a>
+</div></div></footer><script>
+(function(){
+ const b=document.querySelector('.menu-toggle'),m=document.getElementById('site-menu');
+ if(!b||!m)return;
+ b.addEventListener('click',function(){
+   const o=m.classList.toggle('open');
+   b.setAttribute('aria-expanded',o);
+   b.textContent=o?'✕':'☰';
+ });
+ m.querySelectorAll('a').forEach(function(a){
+   a.addEventListener('click',function(){
+     m.classList.remove('open');
+     b.setAttribute('aria-expanded','false');
+     b.textContent='☰';
+   });
+ });
+})();
+</script></body></html>

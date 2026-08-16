@@ -1,20 +1,16 @@
-# Sahil Kutte Engineering Portfolio — V2
+# Sahil Kutte Portfolio V4
 
-## Included
-- Standard professional light theme
-- Home, Projects, Architecture, Skills and Resume pages
-- Deep project case studies
-- Animated HTML/CSS workflows
-- Contact/LinkedIn/GitHub placeholders
-- Photo placeholder
-- No interviewer-question section
+Recruiter-facing, mobile-responsive engineering portfolio.
 
-## Before publishing
-Replace:
-- YOUR_EMAIL@example.com
-- +91 XXXXX XXXXX
-- LinkedIn URL
-- GitHub URL
-- Photo placeholder with profile.jpg
+## Required repository assets
+- `imagesassets/IMG_20250923_083723562~2.jpg`
+- `assets/Sahil_Kutte_Backend_Software_Engineer_Resume_Final(1).pdf`
 
-The architecture/project content is an initial draft and should be verified against confidential production details before publication.
+## Contact
+- Email: kuttesahil@gmail.com
+- Phone: +91 95455 38873
+- LinkedIn: https://www.linkedin.com/in/sahil-kutte-42a18642a/
+- GitHub: https://github.com/sahilkutte
+
+## GitHub Pages
+Upload the contents of `sahil-portfolio-v2` to the repository root.

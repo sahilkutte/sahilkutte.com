@@ -1,7 +1,66 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Architecture | Sahil Kutte</title><link rel="stylesheet" href="assets/style.css"></head><body><header class="nav"><div class="container navin"><a class="logo" href="index.html">SAHIL<span>.</span>KUTTE</a><button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button><nav class="links" id="site-menu"><a class="" href="index.html">Home</a><a class="" href="projects.html">Projects</a><a class="active" href="architecture.html">Architecture</a><a class="" href="skills.html">Skills</a><a class="" href="resume.html">Resume</a></nav></div></header><main><section class="pagehero"><div class="container"><div class="breadcrumb">Home / Architecture</div><div class="eyebrow">System design</div><h1>Architecture & Workflows</h1><p class="lead">Visual explanations of how requests, services, data and real-time events move through the systems.</p></div></section>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Architecture | Sahil Kutte</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body><header class="nav"><div class="container navin">
+<a class="logo" href="index.html">SAHIL<span>.</span>KUTTE</a>
+<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button>
+<nav class="links" id="site-menu">
+<a class="" href="index.html">Home</a><a class="" href="projects.html">Projects</a><a class="active" href="architecture.html">Architecture</a><a class="" href="skills.html">Skills</a><a class="" href="resume.html">Resume</a>
+</nav></div></header><main>
+<section class="pagehero"><div class="container"><div class="breadcrumb">Home / Architecture</div>
+<div class="eyebrow">System design</div><h1>Architecture & Workflows</h1>
+<p class="lead">Visual explanations of how requests, services, data and real-time events move through the systems.</p>
+<div class="attention-strip">🔎 <strong>Follow the highlighted flow.</strong> The moving emphasis shows the direction of data/request movement.</div>
+</div></section>
+
 <section class="section"><div class="container"><div class="kicker">Healthcare workflow</div><h2>Request → business logic → persistence</h2>
 <div class="workflow"><span class="node">Client</span><b class="arrow">→</b><span class="node">REST Controller</span><b class="arrow">→</b><span class="node">Validation</span><b class="arrow">→</b><span class="node">Service</span><b class="arrow">→</b><span class="node">Repository</span><b class="arrow">→</b><span class="node">MySQL</span></div>
-<p class="muted">The animated flow above is a lightweight browser animation. It is intentionally built with HTML/CSS so the portfolio remains fast and does not depend on an external video host.</p></div></section>
-<section class="section"><div class="container"><div class="kicker">Trading workflow</div><h2>Market data → strategy → risk → order</h2><div class="workflow"><span class="node">Broker</span><b class="arrow">→</b><span class="node">WebSocket</span><b class="arrow">→</b><span class="node">Market Data</span><b class="arrow">→</b><span class="node">Strategy</span><b class="arrow">→</b><span class="node">Risk</span><b class="arrow">→</b><span class="node">Order Engine</span><b class="arrow">→</b><span class="node">Broker REST</span></div></div></section>
-<section class="section"><div class="container"><div class="kicker">Interactive explanation</div><h2>How a Spring Boot API reaches the database</h2><div class="grid grid3"><div class="card"><h3>1. HTTP</h3><p class="muted">The client sends an HTTP request to a REST endpoint.</p></div><div class="card"><h3>2. Spring</h3><p class="muted">Spring maps the request to a controller and injects its dependencies.</p></div><div class="card"><h3>3. Business logic</h3><p class="muted">The service layer validates and executes business rules.</p></div><div class="card"><h3>4. JPA</h3><p class="muted">Repository methods delegate persistence work to JPA/Hibernate.</p></div><div class="card"><h3>5. Hibernate</h3><p class="muted">Hibernate translates object operations into SQL and manages mappings.</p></div><div class="card"><h3>6. Database</h3><p class="muted">MySQL executes the SQL and returns data back through the stack.</p></div></div></div></section>
-</main><footer class="footer"><div class="container">© 2026 Sahil Kutte · Backend Software Engineer</div></footer><script>(function(){const b=document.querySelector('.menu-toggle'),m=document.getElementById('site-menu');if(!b||!m)return;b.addEventListener('click',function(){const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'✕':'☰'});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='☰'})});})();</script></body></html>
+<p class="muted">The highlighted nodes pulse in sequence so the workflow is easy to follow without needing a video.</p></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Trading workflow</div><h2>Market data → strategy → risk → order</h2>
+<div class="workflow"><span class="node">Broker</span><b class="arrow">→</b><span class="node">WebSocket</span><b class="arrow">→</b><span class="node">Market Data</span><b class="arrow">→</b><span class="node">Strategy</span><b class="arrow">→</b><span class="node">Risk</span><b class="arrow">→</b><span class="node">Order Engine</span><b class="arrow">→</b><span class="node">Broker REST</span></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Communication choices</div><h2>Why each communication style is used</h2>
+<div class="table-wrap"><table class="info-table"><thead><tr><th>Technology</th><th>Pattern</th><th>Purpose</th><th>Example in my work</th></tr></thead><tbody>
+<tr><td>REST</td><td>Request / response</td><td>Explicit API operations</td><td>Backend APIs and broker order calls</td></tr>
+<tr><td>WebSocket</td><td>Persistent, two-way channel</td><td>Continuous real-time updates</td><td>Broker market-data stream</td></tr>
+<tr><td>Kafka</td><td>Event streaming</td><td>Decoupled asynchronous processing</td><td>Event-driven service communication</td></tr>
+<tr><td>RabbitMQ</td><td>Message broker / queue</td><td>Asynchronous work distribution</td><td>Background processing patterns</td></tr>
+<tr><td>Protobuf</td><td>Binary serialization</td><td>Compact structured messages</td><td>Broker WebSocket market-data messages</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Spring Boot request lifecycle</div><h2>How an API reaches the database</h2>
+<div class="grid grid3"><div class="card step-card"><span class="step-number">01</span><h3>HTTP</h3><p class="muted">Client sends a request to a REST endpoint.</p></div>
+<div class="card step-card"><span class="step-number">02</span><h3>Controller</h3><p class="muted">Spring maps the request and binds the input.</p></div>
+<div class="card step-card"><span class="step-number">03</span><h3>Validation</h3><p class="muted">Request data is checked before business processing.</p></div>
+<div class="card step-card"><span class="step-number">04</span><h3>Service</h3><p class="muted">Business rules and orchestration execute here.</p></div>
+<div class="card step-card"><span class="step-number">05</span><h3>JPA / Hibernate</h3><p class="muted">Object mappings are translated into database operations.</p></div>
+<div class="card step-card"><span class="step-number">06</span><h3>MySQL</h3><p class="muted">The database executes the query and returns the result.</p></div></div>
+</div></section>
+</main><footer class="footer"><div class="container footer-grid">
+<div>© 2026 Sahil Kutte · Backend Software Engineer</div>
+<div class="footer-contact">
+<a href="mailto:kuttesahil@gmail.com">kuttesahil@gmail.com</a>
+<a href="tel:+919545538873">+91 95455 38873</a>
+<a href="https://www.linkedin.com/in/sahil-kutte-42a18642a/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://github.com/sahilkutte" target="_blank" rel="noopener">GitHub</a>
+</div></div></footer><script>
+(function(){
+ const b=document.querySelector('.menu-toggle'),m=document.getElementById('site-menu');
+ if(!b||!m)return;
+ b.addEventListener('click',function(){
+   const o=m.classList.toggle('open');
+   b.setAttribute('aria-expanded',o);
+   b.textContent=o?'✕':'☰';
+ });
+ m.querySelectorAll('a').forEach(function(a){
+   a.addEventListener('click',function(){
+     m.classList.remove('open');
+     b.setAttribute('aria-expanded','false');
+     b.textContent='☰';
+   });
+ });
+})();
+</script></body></html>
