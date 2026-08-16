@@ -1,0 +1,1 @@
+Replace this file with your professional photo named profile.jpg (or change the home page placeholder to use your preferred filename).
