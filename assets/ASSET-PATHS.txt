@@ -1,0 +1,4 @@
+Final portfolio asset paths:
+Photo: assets/IMG_20250923_083723562~2.jpg
+Resume: assets/Sahil_Kutte_Backend_Software_Engineer_Resume_Final(1).pdf
+LinkedIn: https://www.linkedin.com/in/sahil-k-a4041b259/

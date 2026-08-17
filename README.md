@@ -3,13 +3,13 @@
 Recruiter-facing, mobile-responsive engineering portfolio.
 
 ## Required repository assets
-- `imagesassets/IMG_20250923_083723562~2.jpg`
+- `assets/IMG_20250923_083723562~2.jpg`
 - `assets/Sahil_Kutte_Backend_Software_Engineer_Resume_Final(1).pdf`
 
 ## Contact
 - Email: kuttesahil@gmail.com
 - Phone: +91 95455 38873
-- LinkedIn: https://www.linkedin.com/in/sahil-kutte-42a18642a/
+- LinkedIn: https://www.linkedin.com/in/sahil-k-a4041b259/
 - GitHub: https://github.com/sahilkutte
 
 ## GitHub Pages
