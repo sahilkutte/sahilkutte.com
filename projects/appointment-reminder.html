@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Appointment Reminder Scheduler | Sahil Kutte</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head><body><header class="nav"><div class="container navin">
+<a class="logo" href="../index.html">SAHIL<span>.</span>KUTTE</a>
+<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button>
+<nav class="links" id="site-menu">
+<a class="" href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a class="" href="../architecture.html">Architecture</a><a class="" href="../skills.html">Skills</a><a class="" href="../certifications.html">Certifications</a><a class="" href="../resume.html">Resume</a>
+</nav></div></header><main>
+<section class="pagehero"><div class="container"><div class="breadcrumb"><a href="../projects.html">Projects</a> / Appointment Reminder Scheduler</div>
+<div class="eyebrow">Healthcare automation · Scheduled backend workflow</div><h1>Appointment Reminder Scheduler</h1>
+<span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">@Scheduled</span><span class="tag">Cron</span><span class="tag">JPA</span><span class="tag">Notification</span>
+<div class="attention-strip">⏰ <strong>Business rule:</strong> every day the scheduler finds appointments exactly seven days ahead and triggers a patient reminder workflow.</div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">At a glance</div><h2>What the scheduler solves</h2>
+<div class="table-wrap"><table class="info-table"><tbody>
+<tr><th>Problem</th><td>Patients need an appointment reminder before an upcoming appointment.</td></tr>
+<tr><th>Trigger</th><td>Spring Scheduler runs automatically using a cron expression.</td></tr>
+<tr><th>Look-ahead</th><td>The job checks appointments scheduled for seven days from the current date.</td></tr>
+<tr><th>Action</th><td>Eligible patients are passed to the notification/reminder workflow.</td></tr>
+<tr><th>Benefit</th><td>No manual intervention is required to generate routine reminders.</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Workflow</div><h2>Appointment → reminder</h2>
+<div class="workflow"><span class="node">Cron trigger</span><b class="arrow">→</b><span class="node">Scheduler method</span><b class="arrow">→</b><span class="node">Find +7 day appointments</span><b class="arrow">→</b><span class="node">Eligibility checks</span><b class="arrow">→</b><span class="node">Build reminder</span><b class="arrow">→</b><span class="node">Send notification</span><b class="arrow">→</b><span class="node">Log result</span></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Cron + business logic</div><h2>How “one week before” is implemented</h2>
+<p class="muted">A cron expression does not itself know that an appointment is seven days away. The cron expression decides <em>when the job wakes up</em>; the application query decides <em>which appointments are seven days away</em>.</p>
+<pre>@Scheduled(cron = "0 0 9 * * *")
+public void sendAppointmentReminders() {
+    LocalDate reminderDate = LocalDate.now().plusDays(7);
+    List&lt;Appointment&gt; appointments =
+        appointmentRepository.findAppointmentsForDate(reminderDate);
+
+    appointments.forEach(this::sendReminder);
+}</pre>
+<div class="table-wrap" style="margin-top:22px"><table class="info-table"><thead><tr><th>Layer</th><th>Responsibility</th></tr></thead><tbody>
+<tr><td>Scheduler</td><td>Runs the job at a predictable time each day.</td></tr>
+<tr><td>Date calculation</td><td>Calculates today + 7 days.</td></tr>
+<tr><td>Repository</td><td>Fetches appointments whose appointment date matches the reminder date.</td></tr>
+<tr><td>Eligibility</td><td>Checks whether a reminder should be sent and prevents invalid/duplicate notifications.</td></tr>
+<tr><td>Notification service</td><td>Sends the reminder through the configured notification channel.</td></tr>
+</tbody></table></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Example</div><h2>Concrete seven-day scenario</h2>
+<div class="timeline">
+<div class="timeline-item"><h3>Monday, 9:00 AM</h3><p class="muted">The cron job executes automatically.</p></div>
+<div class="timeline-item"><h3>Monday + 7 days = next Monday</h3><p class="muted">The service queries appointments scheduled for next Monday.</p></div>
+<div class="timeline-item"><h3>Eligible patients found</h3><p class="muted">The system builds the reminder message using appointment and patient information.</p></div>
+<div class="timeline-item"><h3>Notification sent</h3><p class="muted">The reminder workflow sends the notification and records the outcome for traceability.</p></div>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Reliability considerations</div><h2>What makes the scheduler production-friendly?</h2>
+<div class="grid grid3"><div class="card"><h3>Idempotency</h3><p class="muted">Track reminder status or a unique reminder key so rerunning the job does not accidentally send the same reminder repeatedly.</p></div><div class="card"><h3>Batching</h3><p class="muted">Process large appointment sets in batches rather than loading an unbounded number of records into memory.</p></div><div class="card"><h3>Observability</h3><p class="muted">Log how many appointments were found, how many reminders were sent, and which notifications failed.</p></div><div class="card"><h3>Timezone</h3><p class="muted">Use an explicit business timezone so the scheduler and appointment date calculations match the expected patient/service location.</p></div><div class="card"><h3>Failure isolation</h3><p class="muted">One failed notification should not prevent the remaining eligible appointments from being processed.</p></div><div class="card"><h3>Retry strategy</h3><p class="muted">Transient notification failures can be retried according to the application's delivery policy without creating duplicates.</p></div></div></div></section>
+
+<section class="section"><div class="container"><div class="kicker">Technical summary</div><h2>Responsibilities by component</h2>
+<div class="table-wrap"><table class="info-table"><thead><tr><th>Component</th><th>Responsibility</th><th>Why it exists</th></tr></thead><tbody>
+<tr><td>Appointment Repository</td><td>Fetch appointments for reminder date</td><td>Keeps data-access logic out of the scheduler.</td></tr>
+<tr><td>Scheduler Service</td><td>Trigger + orchestration</td><td>Coordinates the scheduled workflow.</td></tr>
+<tr><td>Reminder Service</td><td>Create/send notification</td><td>Separates notification concerns from scheduling.</td></tr>
+<tr><td>Reminder tracking</td><td>Record delivery state</td><td>Supports idempotency and auditability.</td></tr>
+</tbody></table></div></div></section>
+</main><footer class="footer"><div class="container footer-grid">
+<div>© 2026 Sahil Kutte · Backend Software Engineer</div>
+<div class="footer-contact"><a href="mailto:kuttesahil@gmail.com">kuttesahil@gmail.com</a><a href="tel:+919545538873">+91 95455 38873</a><a href="https://www.linkedin.com/in/sahil-kutte-42a18642a/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/sahilkutte" target="_blank" rel="noopener">GitHub</a></div></div></footer><script>
+(function(){const b=document.querySelector('.menu-toggle'),m=document.getElementById('site-menu');if(!b||!m)return;b.addEventListener('click',function(){const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'✕':'☰';});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='☰';});});})();
+</script></body></html>

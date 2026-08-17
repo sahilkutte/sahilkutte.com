@@ -14,3 +14,9 @@ Recruiter-facing, mobile-responsive engineering portfolio.
 
 ## GitHub Pages
 Upload the contents of `sahil-portfolio-v2` to the repository root.
+
+
+## V5 additions
+- Deepened Algorithmic Trading Platform case study with design-pattern mapping: Strategy, Factory, Adapter, Observer/event-driven, State and Facade.
+- Added Appointment Reminder Scheduler case study using Spring Scheduler and cron with a seven-day look-ahead query.
+- Added Certifications tab with Udemy Microservices certificate.

@@ -7,7 +7,7 @@
 <a class="logo" href="../index.html">SAHIL<span>.</span>KUTTE</a>
 <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button>
 <nav class="links" id="site-menu">
-<a class="" href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a class="" href="../architecture.html">Architecture</a><a class="" href="../skills.html">Skills</a><a class="" href="../resume.html">Resume</a>
+<a class="" href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a class="" href="../architecture.html">Architecture</a><a class="" href="../skills.html">Skills</a><a class="" href="../certifications.html">Certifications</a><a class="" href="../resume.html">Resume</a>
 </nav></div></header><main>
 <section class="pagehero"><div class="container"><div class="breadcrumb"><a href="../projects.html">Projects</a> / Algorithmic Trading Platform</div>
 <div class="eyebrow">Real-time systems · Engineering project</div><h1>Algorithmic Trading Platform</h1>
@@ -80,6 +80,48 @@ Broker REST API</pre></div></section>
 <tr><td>Trade Logger</td><td>Persists trading events/results</td><td>Traceability</td></tr>
 </tbody></table></div></div></section>
 
+
+<section class="section"><div class="container"><div class="kicker">Design patterns</div><h2>Where design patterns fit in the trading platform</h2>
+<p class="muted">The platform benefits from patterns that isolate strategy rules, broker integrations, order creation and state transitions. The goal is not to use patterns for their own sake; each one reduces coupling in a specific part of the workflow.</p>
+<div class="table-wrap"><table class="info-table"><thead><tr><th>Pattern</th><th>Where it fits</th><th>How it helps</th><th>Example responsibility</th></tr></thead><tbody>
+<tr><td><strong>Strategy Pattern</strong></td><td>Strategy Engine</td><td>Allows different trading algorithms to share the same execution contract without changing the orchestration flow.</td><td>Different option/entry/exit strategies implement a common strategy interface.</td></tr>
+<tr><td><strong>Factory Pattern</strong></td><td>Order Engine</td><td>Centralizes creation of order requests so the rest of the system does not depend on concrete order types.</td><td>Create BUY/SELL, market/limit or instrument-specific order objects from a normalized command.</td></tr>
+<tr><td><strong>Adapter Pattern</strong></td><td>Broker integration</td><td>Hides broker-specific REST/WebSocket formats behind application-level interfaces.</td><td>Convert broker payloads into internal market-data/order models.</td></tr>
+<tr><td><strong>Observer / Event-driven approach</strong></td><td>Market-data processing</td><td>Separates the incoming market-data event from consumers that react to it.</td><td>A price/tick event can be consumed by strategy, monitoring and persistence components.</td></tr>
+<tr><td><strong>State Pattern</strong></td><td>Order / position lifecycle</td><td>Makes lifecycle transitions explicit instead of scattering status checks throughout the code.</td><td>NEW → SENT → OPEN/PARTIALLY_FILLED → FILLED/CANCELLED/REJECTED.</td></tr>
+<tr><td><strong>Facade Pattern</strong></td><td>Trading orchestration</td><td>Provides a simple entry point over strategy, risk, position and order operations.</td><td>A trading workflow coordinates multiple subsystems without exposing their internal details to the caller.</td></tr>
+</tbody></table></div>
+<div class="attention-note">💡 <strong>Key idea:</strong> Strategy Pattern controls <em>which decision algorithm</em> is used; Factory controls <em>how order objects are created</em>; Adapter controls <em>how external broker APIs are translated</em>; State controls <em>how orders/positions move through their lifecycle</em>.</div>
+</div></section>
+
+<section class="section"><div class="container"><div class="kicker">Detailed decision pipeline</div><h2>How a market event becomes a controlled order</h2>
+<div class="workflow"><span class="node">Tick received</span><b class="arrow">→</b><span class="node">Deserialize Protobuf</span><b class="arrow">→</b><span class="node">Normalize market data</span><b class="arrow">→</b><span class="node">Strategy Pattern</span><b class="arrow">→</b><span class="node">Risk checks</span><b class="arrow">→</b><span class="node">Position check</span><b class="arrow">→</b><span class="node">Order Factory</span><b class="arrow">→</b><span class="node">Broker Adapter</span></div>
+<div class="grid grid2" style="margin-top:22px"><div class="card"><h3>Why normalize data?</h3><p class="muted">The strategy should not know the broker's raw message structure. A normalized internal model keeps strategy logic independent from transport and vendor-specific payloads.</p></div><div class="card"><h3>Why separate risk from strategy?</h3><p class="muted">A strategy can produce a signal, but risk management decides whether that signal is permitted. This prevents business strategy code from becoming responsible for global exposure and safety rules.</p></div></div>
+</div></section>
+
+<section class="section"><div class="container"><div class="kicker">Order lifecycle</div><h2>State transitions make execution traceable</h2>
+<pre>Signal
+  ↓
+NEW ORDER
+  ↓
+VALIDATED
+  ↓
+SENT TO BROKER
+  ├──→ REJECTED
+  │
+  ↓
+OPEN / PARTIALLY FILLED
+  ├──→ CANCELLED
+  │
+  ↓
+FILLED
+  ↓
+POSITION UPDATED
+  ↓
+TRADE LOGGED</pre>
+<p class="muted">The lifecycle is useful for handling asynchronous broker responses, retries, reconciliation and operational debugging. A status change should be treated as a state transition rather than just a random field update.</p>
+</div></section>
+
 <section class="section"><div class="container"><div class="kicker">Failure handling</div><h2>Important real-time failure cases</h2>
 <div class="grid grid3"><div class="card"><h3>WebSocket disconnect</h3><p class="muted">Detect connection state and recover the market-data channel safely.</p></div>
 <div class="card"><h3>Order rejection</h3><p class="muted">Separate transport failure from broker-side rejection and update state accordingly.</p></div>
@@ -89,7 +131,7 @@ Broker REST API</pre></div></section>
 <div class="footer-contact">
 <a href="mailto:kuttesahil@gmail.com">kuttesahil@gmail.com</a>
 <a href="tel:+919545538873">+91 95455 38873</a>
-<a href="https://www.linkedin.com/in/sahil-k-a4041b259/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://www.linkedin.com/in/sahil-kutte-42a18642a/" target="_blank" rel="noopener">LinkedIn</a>
 <a href="https://github.com/sahilkutte" target="_blank" rel="noopener">GitHub</a>
 </div></div></footer><script>
 (function(){
